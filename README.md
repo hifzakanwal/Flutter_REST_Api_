@@ -1,16 +1,26 @@
-# flutter_rest_api
+# Get_api_example_1
 
-A new Flutter project.
+<<<<<<< HEAD
+Fetch Data from Api and Display in ListView Builder With Model.
 
-## Getting Started
+Api: https://jsonplaceholder.typicode.com/posts
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Package: http: ^0.13.5 or run this command "dart pub add http" in Terminal (without inverted commas "")
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+https://user-images.githubusercontent.com/110696495/189484321-28ca89d9-32cd-476b-a9bf-d84e931c7fe0.mp4
+=======
+Fetch data from Api and display in Listview Builder with Model
+
+Api: https://jsonplaceholder.typicode.com/posts
+
+Package:  http: ^0.13.5 or run this command "flutter pub add http" in terminal (Without inverted Commas "")
+
+
+
+https://user-images.githubusercontent.com/110696495/189481741-fa5dabbc-0224-43b8-85b3-94b02640015c.mp4
+>>>>>>> 9bd004a (Get_api_example_2)
+
