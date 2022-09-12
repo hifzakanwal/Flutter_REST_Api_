@@ -1,7 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.example.flutter_rest_api">
    <application
         android:label="flutter_rest_api"
+=======
+    package="com.example.sign_up_ra">
+   <application
+        android:label="sign_up_ra"
+>>>>>>> e1a4fad (Post_api_example_Sign up)
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

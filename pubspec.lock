@@ -68,7 +68,11 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
+<<<<<<< HEAD
     dependency: "direct dev"
+=======
+    dependency: "direct main"
+>>>>>>> e1a4fad (Post_api_example_Sign up)
     description:
       name: http
       url: "https://pub.dartlang.org"

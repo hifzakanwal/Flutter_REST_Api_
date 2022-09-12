@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:sign_up_ra/signup.dart';
 
+import 'incorrectinfo.dart';
 import 'model.dart';
 
 class homescreen extends StatefulWidget {
@@ -14,51 +16,92 @@ class homescreen extends StatefulWidget {
 }
 
 class _homescreenState extends State<homescreen> {
-  List<Getapimodel> modellist = [];
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
 
-  Future<List<Getapimodel>> apifun() async {
-    final response =
-        await http.get(Uri.parse("http://jsonplaceholder.typicode.com/users"));
-    final data = jsonDecode(response.body.toString());
+  void login(String email, password) async {
+    try {
+      http.Response response =
+          await http.post(Uri.parse('https://reqres.in/api/register'), body: {
+        'email': email,
+        'password': password,
+      });
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(data);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => firstscreen(
+                      email: "eve.holt@reqres.in",
+                      password: "pistol",
+                    ))));
+        //eve.holt@reqres.in (pistol)
 
-    for (Map i in data) {
-      modellist.add(Getapimodel.fromJson(i as Map<String, dynamic>));
-    }
+        print("suc");
+      } else {
+        Navigator.push(context,
+            MaterialPageRoute(builder: ((context) => firstifincorrect())));
 
-    if (response == 200) {
-      return modellist;
-    } else {
-      return modellist;
+        print("fail");
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: apifun(),
-        builder: ((context, AsyncSnapshot<List<Getapimodel>> snapshot) {
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          } else {
-            return ListView.builder(
-                itemCount: modellist.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: Column(
-                      children: [
-                        //modellist[index].title.toString()
-                        Text(snapshot.data![index].name.toString()),
-                        Text(snapshot.data![index].email.toString()),
-                        Text(snapshot.data![index].address!.city.toString()),
-                        Text(
-                            snapshot.data![index].address!.geo!.lat.toString()),
-                        //  Text(modellist[index].name.address.city.toString()),
-                        //               Text(modellist[index].email.toString()),
-                      ],
-                    ),
-                  );
-                });
-          }
-        }));
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Sign Up"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TextFormField(
+                controller: emailcontroller,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: passwordcontroller,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  login(emailcontroller.text.toString(),
+                      passwordcontroller.text.toString());
+                },
+                child: Container(
+                  height: 33,
+                  width: 65,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text("Sign Up"),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+            ],
+          ),
+        ));
   }
 }
